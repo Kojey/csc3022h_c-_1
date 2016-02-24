@@ -22,8 +22,4 @@ clean:
 	@rm *.o driver
 #special rule to run your code... your tutor will probably love you for this!
 run:
-	#by default your OS will go and look in certain places such as the current directory, /usr/lib and /usr/local/lib
-	#for linked in shared libraries. However our custom library is not in one of these folders... it is in ./factorial_library/
-	#so tell the environment to add it to the list of places to look, otherwise you will get an error like this:
-	#"./driver: error while loading shared libraries: libbrain_dead_factorial.so: cannot open shared object file: No such file or directory"
 	export LD_LIBRARY_PATH=$(LIBRARY_LOAD_PATH) && ./driver

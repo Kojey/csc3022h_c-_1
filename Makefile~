@@ -2,11 +2,12 @@
 #(C) Benjamin Hugo, 2015
 #You are free to modify and reuse this in your own practicals
 #This file is in the public domain
-
+cd ..
+make
 CPP=g++
-INCLUDES_SEARCH_PATH=./factorial_library/
-LIBRARY_LOAD_PATH=./factorial_library/
-LIBRARY_DEPENDENCIES=-lbrain_dead_factorial #link against libbrain_dead_factorial.so
+INCLUDES_SEARCH_PATH=./libs/
+LIBRARY_LOAD_PATH=./libs/
+LIBRARY_DEPENDENCIES=-linterface #link against libbrain_dead_factorial.so
 CPPFLAGS=-std=c++11 -I $(INCLUDES_SEARCH_PATH) -L $(LIBRARY_LOAD_PATH) $(LIBRARY_DEPENDENCIES)
 EXE_NAME=driver
 #define a generic rule: to go from .cpp to .o files make should invoke the c++ compiler
@@ -22,8 +23,4 @@ clean:
 	@rm *.o driver
 #special rule to run your code... your tutor will probably love you for this!
 run:
-	#by default your OS will go and look in certain places such as the current directory, /usr/lib and /usr/local/lib
-	#for linked in shared libraries. However our custom library is not in one of these folders... it is in ./factorial_library/
-	#so tell the environment to add it to the list of places to look, otherwise you will get an error like this:
-	#"./driver: error while loading shared libraries: libbrain_dead_factorial.so: cannot open shared object file: No such file or directory"
 	export LD_LIBRARY_PATH=$(LIBRARY_LOAD_PATH) && ./driver
