@@ -8,6 +8,7 @@
 #define LIBS_INTERFACE_H
 
 namespace KNNOTH001 {
+	void student_parameters();
 	void add_student(std::string name, std::string surname, std::string student_number, std::string class_record);
 	void read_database();
 	void save_database();

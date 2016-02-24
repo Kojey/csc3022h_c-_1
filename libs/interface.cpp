@@ -8,6 +8,10 @@
 #include "interface.h"
 
 namespace KNNOTH001 {
+	void student_parameters(){
+		std::cout << "function student_parameters called" << std::endl;
+	}
+	
 	void add_student(std::string name, std::string surname, std::string student_number, std::string class_record){
 		std::cout << "function add_student called" << std::endl;
 	}	
