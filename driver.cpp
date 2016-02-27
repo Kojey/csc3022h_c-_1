@@ -52,6 +52,10 @@ void process_input(int input, std::vector<::StudentRecord>& database){
 			break;
 		case 3:
 			KNNOTH001::load_database(database);
+			std::cout << database.front().name << std::endl;
+			std::cout << database.front().surname << std::endl;
+			std::cout << database.front().student_number << std::endl;
+			std::cout << database.front().grades << std::endl;
 			break;
 	}
 }

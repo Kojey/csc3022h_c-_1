@@ -7,6 +7,7 @@
 #include <iostream>
 #include <string>
 #include <fstream>
+#include <sstream>
 #include "interface.h"
 
 namespace KNNOTH001 {
@@ -46,13 +47,24 @@ namespace KNNOTH001 {
 			return ;
 		}
 		
-		::StudentRecord student;
 		int counter = 0;
 		std::string line;
-		char ch = '*';
-		while (std::getline(file, line, ch)){
-			std::cout << line << std::endl;
-			std::cout << "In" << std::endl;
+		while (std::getline(file, line)){
+			std::stringstream ss;
+			ss.str(line);
+			std::string word;
+			::StudentRecord student;
+			ss >> student.name;
+			line = line.erase(0, line.find_first_not_of(student.name)+1);
+			ss.str(line);
+			ss >> student.surname;
+			line = line.erase(0, line.find_first_not_of(student.surname)+1);
+			ss.str(line);
+			ss >> student.student_number;
+			line = line.erase(0, line.find_first_not_of(student.student_number)+1);
+			ss.str(line);
+			student.grades = ss.str();
+			database.push_back(student);
 		}
 		file.close();
 	}
