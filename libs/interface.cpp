@@ -5,7 +5,6 @@
  */
 
 #include <iostream>
-#include <vector>
 #include <string>
 #include <fstream>
 #include "interface.h"
@@ -44,15 +43,36 @@ namespace KNNOTH001 {
 			std::cout << "Unable to open file " << file_name << std::endl;
 			return ;
 		}
-		char array[200];
-		while (!file.getline(array,200)){ // while not end of file 
-			// Read a line
-			while (!file){ // not end of line
-				::StudentRecord student;
-				// Update student's record
-				// .........
-				// Add student's data to vector students
+		
+		::StudentRecord student;
+		int counter = 0;
+		std::string word;
+		while (!file.eof()){ // while not end of file 
+			file >> word >> std::ws;
+			if (word == "*"){
 				students.push_back(student);
+				counter = 0;
+				continue;
+			}
+			switch (counter){
+				case 0:
+					std::cout << "add name : " << word << std::endl;
+					student.name = word;
+					counter++;
+					break;
+				case 1:
+					std::cout << "add surname : " << word << std::endl;
+					student.surname = word;
+					counter++;
+					break;
+				case 2:
+					std::cout << "add student number : " << word << std::endl;
+					student.student_number = word;
+					counter++;
+					break;
+				default:
+					std::cout << "add grade : " << word << std::endl;
+					student.grades.push_back(std::atoi(word.c_str()));
 			}
 		}
 		file.close();

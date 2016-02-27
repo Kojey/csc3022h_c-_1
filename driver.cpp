@@ -10,7 +10,7 @@
 #include "interface.h"
 
 void print_menu();
-void process_input(int input);
+void process_input(int input, std::vector<::StudentRecord>& students);
 void clear();
 
 int main(){
@@ -25,7 +25,8 @@ int main(){
 		if (input =='q'){ break;}
 		// call right function
 		int choice = int(input)-48;
-		if (choice <=3 && choice >=0) {::process_input(choice);}
+		std::vector<::StudentRecord> database; 
+		if (choice <=3 && choice >=0) {::process_input(choice, database);}
 	}
 	return 0;
 }
@@ -38,7 +39,7 @@ void print_menu(){
 	std::cout << "q : Quit" << std::endl;
 }
 
-void process_input(int input){
+void process_input(int input, std::vector<::StudentRecord>& students){
 	switch(input){
 		case 0:
 			KNNOTH001::student_parameters();
@@ -50,7 +51,7 @@ void process_input(int input){
 			KNNOTH001::save_database();
 			break;
 		case 3:
-			KNNOTH001::display_student();
+			KNNOTH001::load_database(students);
 			break;
 	}
 }

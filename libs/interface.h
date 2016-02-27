@@ -3,14 +3,15 @@
  * Author: Othniel Konan
  * Date: Feb 2016
  */
-
+#include <vector>
+#include <string>
 #ifndef LIBS_INTERFACE_H
 #define LIBS_INTERFACE_H
 
 struct StudentRecord {
-	char name[40];
-	char surname[40];
-	char student_number[9];
+	std::string name;
+	std::string surname;
+	std::string student_number;
 	std::vector<int> grades;
 };
 
