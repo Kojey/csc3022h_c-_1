@@ -27,25 +27,35 @@ int main(){
 		if (input =='q'){ break;}
 		// call right function
 		int choice = int(input)-48;
-		if (choice <=4 && choice >=0) {::process_input(choice, database);}
+		if (choice <=4 && choice >=0) {
+			cout << endl;
+			::process_input(choice, database);
+			cout << "Press Enter to go to the menu: " ;
+			if(choice!=0)cin.get();
+			cin.get();
+			::clear();
+		}
 	}
 	return 0;
 }
 
 void print_menu(){
 	using namespace std;
+	cout << "****** STUDENT CENTER ******" << endl;
+	cout << endl;
 	cout << "0 : Add a student" << endl;
 	cout << "1 : read database" << endl;
 	cout << "2 : save database" << endl;
 	cout << "3 : display student's data" << endl;
 	cout << "4 : grade student" << endl;
 	cout << "q : Quit" << endl;
+	cout << "Enter a number (or q to quit) and press return: " ;
 }
 
 void process_input(int input, std::vector<::StudentRecord>& database){
 	switch(input){
 		case 0:
-			KNNOTH001::add_student("Rebecca Konan KNNREB001 100 100",database);//student_parameters(database);
+			KNNOTH001::student_parameters(database);
 			break;
 		case 1:
 			KNNOTH001::read_database();

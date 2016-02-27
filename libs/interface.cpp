@@ -20,10 +20,10 @@ namespace KNNOTH001 {
 		cin >> temp;
 		getline(cin, line);
 		add_student(temp+line, database);
+		cout << "Student added." << endl;
 	}
 	
 	void add_student(string line, vector<::StudentRecord>& database){
-		cout << "function add_student called" << endl;
 		stringstream ss;
 		ss.str(line);
 		// Create a student record and store the student's information
@@ -45,7 +45,7 @@ namespace KNNOTH001 {
 	void read_database(){
 		vector<::StudentRecord> database;
 		load_database(database);
-		cout << "function read_database called" << endl;
+		cout << "\t\t\t*****DATABASE*****" << endl;
 		// Print title
 		printStudentRecord("Name", "Surname","Student Number","Grades");
 		// Print database
@@ -77,16 +77,16 @@ namespace KNNOTH001 {
 	}
 	
 	void display_student(vector<::StudentRecord>& database){
-		cout << "function display_student called" << endl;
-		cout << "Enter student number in capital letter :" << endl;
+		cout << "Enter student number in capital letter: ";
 		string student_number;
 		cin >> student_number;
+		printStudentRecord("Name", "Surname","Student Number","Grades");
 		::StudentRecord student = get_student(student_number, database);
+		cout << "Student's details" << endl;
 		printStudentRecord(student.name, student.surname,student.student_number,student.grades);
 	}
 	
 	void save_database(vector<::StudentRecord>& database){
-		cout << "function save_database called" << endl;
 		string file_name = "data.txt";
 		ofstream file (file_name);
 		if (file.is_open()){
@@ -98,13 +98,13 @@ namespace KNNOTH001 {
 				file << student.grades+ "\n";
 			}
 			file.close();
+			cout << "Database saved." << endl;
 		}
 		else cout << "Unable to open " << file_name << endl;
 	}
 	
 	double grade_student(std::vector<::StudentRecord>& database){
-		cout << "function grade_student called" << endl;
-		cout << "Enter student number in capital letter :" << endl;
+		cout << "Enter student number in capital letter: ";
 		string student_number;
 		cin >> student_number;
 		::StudentRecord student = get_student(student_number, database);
@@ -123,7 +123,6 @@ namespace KNNOTH001 {
 	}
 	
 	void load_database(vector<::StudentRecord>& database){
-		cout << "load_database()" << endl;
 		string file_name = "data.txt";
 		ifstream file(file_name.c_str());
 		if (!file){
