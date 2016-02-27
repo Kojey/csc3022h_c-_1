@@ -8,6 +8,7 @@
 #include <string>
 #include <fstream>
 #include <sstream>
+#include <iomanip>
 #include "interface.h"
 
 namespace KNNOTH001 {
@@ -20,9 +21,26 @@ namespace KNNOTH001 {
 	}	
 	
 	void read_database(std::vector<::StudentRecord>& database){
+		load_database(database);
 		std::cout << "function read_database called" << std::endl;
-		//std::cout << std::setw(10) << "aaaaaa";
-		//std::cout << std::setw(10) << "bbbbbb";
+		int width = 20;
+		// Set format
+		std::cout.setf(std::ios::left, std::ios::adjustfield);
+		// Print title
+		std::cout << std::setw(width) << "Name";
+		std::cout << std::setw(width) << "Surname";
+		std::cout << std::setw(width) << "Student Number";
+		std::cout << "Grade" << std::endl;
+		// Print database
+		for (int i=0; i<database.size(); i++){
+			::StudentRecord student = database.at(i);
+			std::cout << std::setw(width) << student.name;
+			std::cout << std::setw(width) << student.surname;
+			std::cout << std::setw(width) << student.student_number;
+			std::cout << student.grades << std::endl;
+		}
+		// Unset format
+		std::cout.unsetf(std::ios::adjustfield);
 	}
 	
 	void display_student(){
@@ -49,10 +67,10 @@ namespace KNNOTH001 {
 		
 		int counter = 0;
 		std::string line;
-		while (std::getline(file, line)){
+		while (std::getline(file, line)){	// For every line in the file
 			std::stringstream ss;
 			ss.str(line);
-			std::string word;
+			// Create a student record and store the student's information
 			::StudentRecord student;
 			ss >> student.name;
 			line = line.erase(0, line.find_first_not_of(student.name)+1);
@@ -64,6 +82,7 @@ namespace KNNOTH001 {
 			line = line.erase(0, line.find_first_not_of(student.student_number)+1);
 			ss.str(line);
 			student.grades = ss.str();
+			// Add student to database
 			database.push_back(student);
 		}
 		file.close();
