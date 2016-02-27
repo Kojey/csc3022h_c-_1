@@ -23,7 +23,7 @@ namespace KNNOTH001 {
 	void save_database(std::vector<::StudentRecord>& database);
 	::StudentRecord get_student(std::string student_number, std::vector<::StudentRecord>& database);
 	void display_student(std::vector<::StudentRecord>& database);
-	void grade_student();
+	double grade_student(std::vector<::StudentRecord>& database);
 	void load_database(std::vector<::StudentRecord>& database);
 }
 

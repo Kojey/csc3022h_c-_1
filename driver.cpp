@@ -27,7 +27,7 @@ int main(){
 		if (input =='q'){ break;}
 		// call right function
 		int choice = int(input)-48;
-		if (choice <=3 && choice >=0) {::process_input(choice, database);}
+		if (choice <=4 && choice >=0) {::process_input(choice, database);}
 	}
 	return 0;
 }
@@ -57,7 +57,7 @@ void process_input(int input, std::vector<::StudentRecord>& database){
 			KNNOTH001::display_student(database);
 			break;
 		case 4:
-			KNNOTH001::grade_student();
+			KNNOTH001::grade_student(database);
 			break;
 	}
 }

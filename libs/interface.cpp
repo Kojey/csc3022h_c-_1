@@ -102,13 +102,24 @@ namespace KNNOTH001 {
 		else cout << "Unable to open " << file_name << endl;
 	}
 	
-	void grade_student(){
+	double grade_student(std::vector<::StudentRecord>& database){
 		cout << "function grade_student called" << endl;
 		cout << "Enter student number in capital letter :" << endl;
 		string student_number;
 		cin >> student_number;
 		::StudentRecord student = get_student(student_number, database);
 		// Calculate grade
+		stringstream ss;
+		ss.str(student.grades);
+		string mark;
+		double sum = 0;
+		int number_of_mark = 0;
+		while (ss >> mark){
+			number_of_mark++;
+			sum += stoi(mark);
+		}
+		double result = sum/number_of_mark;
+		cout << student.name << "'s average is: " << result << endl;
 	}
 	
 	void load_database(vector<::StudentRecord>& database){
