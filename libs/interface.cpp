@@ -30,7 +30,7 @@ namespace KNNOTH001 {
 		std::cout << std::setw(width) << "Name";
 		std::cout << std::setw(width) << "Surname";
 		std::cout << std::setw(width) << "Student Number";
-		std::cout << "Grade" << std::endl;
+		std::cout << "Grades" << std::endl;
 		// Print database
 		for (int i=0; i<database.size(); i++){
 			::StudentRecord student = database.at(i);
@@ -47,8 +47,21 @@ namespace KNNOTH001 {
 		std::cout << "function display_student called" << std::endl;
 	}
 	
-	void save_database(){
+	void save_database(std::vector<::StudentRecord>& database){
 		std::cout << "function save_database called" << std::endl;
+		std::string file_name = "data.txt";
+		std::ofstream file (file_name);
+		if (file.is_open()){
+			for (int i=0; i<database.size(); i++){
+				::StudentRecord student = database.at(i);
+				file << student.name + " ";
+				file << student.surname + " ";
+				file << student.student_number + " ";
+				file << student.grades+ "\n";
+			}
+			file.close();
+		}
+		else std::cout << "Unable to open " << file_name << std::endl;
 	}
 	
 	void grade_student(){
@@ -64,7 +77,7 @@ namespace KNNOTH001 {
 			std::cout << "Unable to open file " << file_name << std::endl;
 			return ;
 		}
-		
+		database.clear();
 		int counter = 0;
 		std::string line;
 		while (std::getline(file, line)){	// For every line in the file

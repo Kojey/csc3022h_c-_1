@@ -26,6 +26,7 @@ int main(){
 		// call right function
 		int choice = int(input)-48;
 		std::vector<::StudentRecord> database; 
+		KNNOTH001::load_database(database);
 		if (choice <=3 && choice >=0) {::process_input(choice, database);}
 	}
 	return 0;
@@ -48,14 +49,10 @@ void process_input(int input, std::vector<::StudentRecord>& database){
 			KNNOTH001::read_database(database);
 			break;
 		case 2:
-			KNNOTH001::save_database();
+			KNNOTH001::save_database(database);
 			break;
 		case 3:
-			KNNOTH001::load_database(database);
-			std::cout << database.front().name << std::endl;
-			std::cout << database.front().surname << std::endl;
-			std::cout << database.front().student_number << std::endl;
-			std::cout << database.front().grades << std::endl;
+			KNNOTH001::display_student();
 			break;
 	}
 }
