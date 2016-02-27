@@ -56,3 +56,4 @@ void process_input(int input){
 }
 
 void clear(void) { system("clear"); }
+
