@@ -14,45 +14,50 @@ void process_input(int input, std::vector<::StudentRecord>& students);
 void clear();
 
 int main(){
-	
+	using namespace std;
+	vector<::StudentRecord> database; 
+	KNNOTH001::load_database(database);
 	for (;;){
 		// print the menu
 		::print_menu();
 		// get choice and clear screen
 		char input;
-		std::cin >> input;
+		cin >> input;
 		// terminate on condition
 		if (input =='q'){ break;}
 		// call right function
 		int choice = int(input)-48;
-		std::vector<::StudentRecord> database; 
-		KNNOTH001::load_database(database);
 		if (choice <=3 && choice >=0) {::process_input(choice, database);}
 	}
 	return 0;
 }
 
 void print_menu(){
-	std::cout << "0 : Add a student" << std::endl;
-	std::cout << "1 : read database" << std::endl;
-	std::cout << "2 : save database" << std::endl;
-	std::cout << "3 : display student's data" << std::endl;
-	std::cout << "q : Quit" << std::endl;
+	using namespace std;
+	cout << "0 : Add a student" << endl;
+	cout << "1 : read database" << endl;
+	cout << "2 : save database" << endl;
+	cout << "3 : display student's data" << endl;
+	cout << "4 : grade student" << endl;
+	cout << "q : Quit" << endl;
 }
 
 void process_input(int input, std::vector<::StudentRecord>& database){
 	switch(input){
 		case 0:
-			KNNOTH001::student_parameters();
+			KNNOTH001::add_student("Rebecca Konan KNNREB001 100 100",database);//student_parameters(database);
 			break;
 		case 1:
-			KNNOTH001::read_database(database);
+			KNNOTH001::read_database();
 			break;
 		case 2:
 			KNNOTH001::save_database(database);
 			break;
 		case 3:
-			KNNOTH001::display_student();
+			KNNOTH001::display_student(database);
+			break;
+		case 4:
+			KNNOTH001::grade_student();
 			break;
 	}
 }

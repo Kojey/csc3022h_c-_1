@@ -16,11 +16,13 @@ struct StudentRecord {
 };
 
 namespace KNNOTH001 {
-	void student_parameters();
-	void add_student(std::string name, std::string surname, std::string student_number, std::string class_record);
-	void read_database(std::vector<::StudentRecord>& database);
+	void student_parameters(std::vector<::StudentRecord>& database);
+	void add_student(std::string line,std::vector<::StudentRecord>& database);
+	void read_database();
+	void printStudentRecord (std::string name, std::string surname, std::string student_number, std::string grades);
 	void save_database(std::vector<::StudentRecord>& database);
-	void display_student();
+	::StudentRecord get_student(std::string student_number, std::vector<::StudentRecord>& database);
+	void display_student(std::vector<::StudentRecord>& database);
 	void grade_student();
 	void load_database(std::vector<::StudentRecord>& database);
 }
