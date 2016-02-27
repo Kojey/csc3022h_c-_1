@@ -18,8 +18,10 @@ namespace KNNOTH001 {
 		std::cout << "function add_student called" << std::endl;
 	}	
 	
-	void read_database(){
+	void read_database(std::vector<::StudentRecord>& database){
 		std::cout << "function read_database called" << std::endl;
+		//std::cout << std::setw(10) << "aaaaaa";
+		//std::cout << std::setw(10) << "bbbbbb";
 	}
 	
 	void display_student(){
@@ -35,7 +37,7 @@ namespace KNNOTH001 {
 		
 	}
 	
-	void load_database(std::vector<::StudentRecord>& students){
+	void load_database(std::vector<::StudentRecord>& database){
 		std::cout << "load_database()" << std::endl;
 		std::string file_name = "data.txt";
 		std::ifstream file(file_name.c_str());
@@ -46,34 +48,11 @@ namespace KNNOTH001 {
 		
 		::StudentRecord student;
 		int counter = 0;
-		std::string word;
-		while (!file.eof()){ // while not end of file 
-			file >> word >> std::ws;
-			if (word == "*"){
-				students.push_back(student);
-				counter = 0;
-				continue;
-			}
-			switch (counter){
-				case 0:
-					std::cout << "add name : " << word << std::endl;
-					student.name = word;
-					counter++;
-					break;
-				case 1:
-					std::cout << "add surname : " << word << std::endl;
-					student.surname = word;
-					counter++;
-					break;
-				case 2:
-					std::cout << "add student number : " << word << std::endl;
-					student.student_number = word;
-					counter++;
-					break;
-				default:
-					std::cout << "add grade : " << word << std::endl;
-					student.grades.push_back(std::atoi(word.c_str()));
-			}
+		std::string line;
+		char ch = '*';
+		while (std::getline(file, line, ch)){
+			std::cout << line << std::endl;
+			std::cout << "In" << std::endl;
 		}
 		file.close();
 	}

@@ -39,19 +39,19 @@ void print_menu(){
 	std::cout << "q : Quit" << std::endl;
 }
 
-void process_input(int input, std::vector<::StudentRecord>& students){
+void process_input(int input, std::vector<::StudentRecord>& database){
 	switch(input){
 		case 0:
 			KNNOTH001::student_parameters();
 			break;
 		case 1:
-			KNNOTH001::read_database();
+			KNNOTH001::read_database(database);
 			break;
 		case 2:
 			KNNOTH001::save_database();
 			break;
 		case 3:
-			KNNOTH001::load_database(students);
+			KNNOTH001::load_database(database);
 			break;
 	}
 }
