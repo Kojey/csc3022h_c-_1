@@ -74,15 +74,22 @@ namespace KNNOTH001 {
 				return student;
 			}
 		}
+		::StudentRecord empty;
+		empty.student_number = "void";
+		return empty;
 	}
 	
 	void display_student(vector<::StudentRecord>& database){
 		cout << "Enter student number in capital letter: ";
 		string student_number;
 		cin >> student_number;
-		printStudentRecord("Name", "Surname","Student Number","Grades");
 		::StudentRecord student = get_student(student_number, database);
+		if (student.student_number == "void"){
+			cout << "Student number does not exist." << endl;
+			return;
+		}
 		cout << "Student's details" << endl;
+		printStudentRecord("Name", "Surname","Student Number","Grades");
 		printStudentRecord(student.name, student.surname,student.student_number,student.grades);
 	}
 	
@@ -108,6 +115,10 @@ namespace KNNOTH001 {
 		string student_number;
 		cin >> student_number;
 		::StudentRecord student = get_student(student_number, database);
+		if (student.student_number == "void"){
+			cout << "Student number does not exist." << endl;
+			return 0;
+		}
 		// Calculate grade
 		stringstream ss;
 		ss.str(student.grades);

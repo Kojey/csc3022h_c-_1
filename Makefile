@@ -19,7 +19,14 @@ $(EXE_NAME): driver.o
 
 #Never submit binaries to your git repo or vula, so create a rule for cleaning up the binary objects just leaving your source code behind
 clean:
-	@rm *.o driver
+	rm *.o driver
+	cd libs && make clean
+# build entire project
+all:
+	cd libs && make
+	make
 #special rule to run your code... your tutor will probably love you for this!
 run:
 	export LD_LIBRARY_PATH=$(LIBRARY_LOAD_PATH) && ./driver
+
+

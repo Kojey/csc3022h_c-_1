@@ -41,7 +41,7 @@ int main(){
 
 void print_menu(){
 	using namespace std;
-	cout << "****** STUDENT CENTER ******" << endl;
+	cout << "\n\t****** STUDENT CENTER ******" << endl;
 	cout << endl;
 	cout << "0 : Add a student" << endl;
 	cout << "1 : read database" << endl;
