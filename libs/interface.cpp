@@ -19,27 +19,53 @@ namespace KNNOTH001 {
 		string temp;
 		cin >> temp;
 		getline(cin, line);
-		add_student(temp+line, database);
-		cout << "Student added." << endl;
+		add_student(temp+line, database, false);
 	}
 	
-	void add_student(string line, vector<::StudentRecord>& database){
+	void add_student(string line, vector<::StudentRecord>& database, bool load){
 		stringstream ss;
 		ss.str(line);
-		// Create a student record and store the student's information
-		::StudentRecord student;
-		ss >> student.name;
-		line = line.erase(0, line.find_first_not_of(student.name)+1);
+		string name;
+		string surname; 
+		string student_number;
+		string grades;
+		//
+		ss >> name;
+		line = line.erase(0, line.find_first_not_of(name)+1);
 		ss.str(line);
-		ss >> student.surname;	
-		line = line.erase(0, line.find_first_not_of(student.surname)+1);
+		ss >> surname;	
+		line = line.erase(0, line.find_first_not_of(surname)+1);
 		ss.str(line);
-		ss >> student.student_number;
-		line = line.erase(0, line.find_first_not_of(student.student_number)+1);
+		ss >> student_number;
+		line = line.erase(0, line.find_first_not_of(student_number)+1);
 		ss.str(line);
-		student.grades = ss.str();
-		// Add student to database
-		database.push_back(student);
+		grades = ss.str();
+		// student not in database
+		if (get_student(student_number, database).student_number == "void"){
+			// add to database
+			// Create a student record and store the student's information
+			::StudentRecord student;
+			student.name = name;
+			student.surname = surname;
+			student.student_number = student_number;
+			student.grades = grades;
+			// Add student to database
+			database.push_back(student);
+			if (!load) cout << student_number << " was added to the database." << endl;
+		}
+		else { // student is in database
+			// find student's position in database and change student's detail in database
+			for (int i=0; i<database.size(); i++) {
+				::StudentRecord student = database.at(i);
+				if(student.student_number == student_number){
+					database.at(i).name = name;
+					database.at(i).surname = surname;
+					database.at(i).grades = grades;
+					break;
+				}
+			}
+			if (!load) cout << student_number << " 's details was updated." << endl;
+		}
 	}	
 	
 	void read_database(){
@@ -144,7 +170,7 @@ namespace KNNOTH001 {
 		int counter = 0;
 		string line;
 		while (getline(file, line)){	// For every line in the file
-			add_student(line, database);
+			add_student(line, database, true);
 		}
 		file.close();
 	}
