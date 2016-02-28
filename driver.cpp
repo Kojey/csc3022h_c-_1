@@ -15,9 +15,9 @@ void clear();
 
 int main(){
 	using namespace std;
-	vector<::StudentRecord> database; 
-	KNNOTH001::load_database(database);
-	for (;;){
+	vector<::StudentRecord> database; // the database
+	KNNOTH001::load_database(database); // load database at start
+	for (;;){ // menu loop
 		// print the menu
 		::print_menu();
 		// get choice and clear screen
@@ -31,17 +31,20 @@ int main(){
 			cout << endl;
 			::process_input(choice, database);
 			cout << "Press Enter to go to the menu: " ;
-			if(choice!=0)cin.get();
-			cin.get();
-			::clear();
+			if(choice!=0)cin.get(); // clear previous entry
+			cin.get(); // continue on enter
+			::clear(); // clear console
 		}
 	}
 	return 0;
 }
 
 void print_menu(){
+	/* 
+	 * Print the menu
+	 * */
 	using namespace std;
-	cout << "\n\t****** STUDENT CENTER ******" << endl;
+	cout << "\n\t******** MENU ********" << endl;
 	cout << endl;
 	cout << "0 : Add a student" << endl;
 	cout << "1 : read database" << endl;
@@ -53,6 +56,9 @@ void print_menu(){
 }
 
 void process_input(int input, std::vector<::StudentRecord>& database){
+	/*
+	 * Process the input choice
+	 */
 	switch(input){
 		case 0:
 			KNNOTH001::student_parameters(database);

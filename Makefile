@@ -28,5 +28,3 @@ all:
 #special rule to run your code... your tutor will probably love you for this!
 run:
 	export LD_LIBRARY_PATH=$(LIBRARY_LOAD_PATH) && ./driver
-
-
